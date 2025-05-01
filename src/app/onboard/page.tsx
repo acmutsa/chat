@@ -5,6 +5,9 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { Button } from "@/components/ui/button";
+import { ThemeSelector } from "./theme-selector";
+import Link from "next/link";
+
 export default async function Page() {
 	const clerkUser = await currentUser();
 
@@ -38,8 +41,11 @@ export default async function Page() {
 				below:
 			</p>
 			<Card className="relative overflow-hidden border-border/40 bg-gradient-to-b from-background to-background/95 backdrop-blur shadow-xl rounded-2xl w-full max-w-[500px] mt-10">
-				<CardContent className="p-0 flex items-center justify-center">
-					<Button>Continue {">"}</Button>
+				<CardContent className="p-0 flex flex-col items-center justify-center">
+					<ThemeSelector />
+					<Link href="/">
+						<Button className="mt-4 mb-6">Continue {">"}</Button>
+					</Link>
 				</CardContent>
 			</Card>
 		</main>

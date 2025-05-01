@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito, PT_Sans } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -19,16 +20,23 @@ const ptSans = PT_Sans({
 	weight: ["400", "700"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const cookieStore = await cookies();
+	const theme = cookieStore.get("theme")?.value ?? "light";
+
 	return (
 		<ClerkProvider>
 			<html lang="en">
 				<body
-					className={`${nunito.variable} ${ptSans.variable} antialiased relative`}
+					className={`${nunito.variable} ${
+						ptSans.variable
+					} antialiased relative ${
+						theme !== "dark" ? "light" : "dark"
+					}`}
 				>
 					<div className="" />
 					{children}
