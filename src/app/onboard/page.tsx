@@ -10,7 +10,6 @@ export default function Page() {
 				You are now Registered. Feel free to customize your experience
 				below:
 			</p>
-			<Card></Card>
 		</main>
 	);
 }
