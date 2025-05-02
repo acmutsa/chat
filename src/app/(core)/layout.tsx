@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { usersTable } from "@/db/schema";
 import { RedirectToSignIn } from "@clerk/nextjs";
+import Sidebar from "./sidebar";
 
 export default async function Layout({
 	children,
@@ -24,5 +25,10 @@ export default async function Layout({
 		redirect("/onboard");
 	}
 
-	return <div>{children}</div>;
+	return (
+		<main className="flex">
+			<Sidebar />
+			<div className="flex-1">{children}</div>
+		</main>
+	);
 }

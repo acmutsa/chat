@@ -38,7 +38,6 @@ export default async function RootLayout({
 						theme !== "dark" ? "light" : "dark"
 					}`}
 				>
-					<div className="" />
 					{children}
 				</body>
 			</html>
